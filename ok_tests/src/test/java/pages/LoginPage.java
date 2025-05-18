@@ -36,6 +36,16 @@ public class LoginPage extends BasePage {
                 .click();
     }
 
+    public FeedPage clickLoginSuccess() {
+        loginButton.shouldBe(visible.because("Кнопка входа не отображается"))
+                .scrollTo()
+                .click();
+
+        FeedPage feedPage = new FeedPage();
+        feedPage.checkIsLoaded();
+        return feedPage;
+    }
+
     public String getLoginErrorText() {
         return loginError.shouldBe(visible.because("Ошибка не отображается")).getText();
     }

@@ -2,6 +2,7 @@ package tests.login;
 
 import base.BaseTest;
 import org.junit.jupiter.api.*;
+import pages.FeedPage;
 import pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -25,7 +26,6 @@ public class LoginPageTests extends BaseTest {
     @Tag("negative")
     @DisplayName("Негативные сценарии авторизации")
     class NegativeLoginTests {
-
         @Test
         @DisplayName("Неверный логин и пароль")
         void invalidLoginTest() {
@@ -57,6 +57,23 @@ public class LoginPageTests extends BaseTest {
             String actualError = loginPage.getLoginErrorText();
             assertEquals(EXPECTED_ERROR_EMPTY_PASSWORD, actualError,
                     "Сообщение об ошибке при пустом пароле не совпадает с ожидаемым");
+        }
+    }
+
+    @Nested
+    @Tag("positive")
+    @DisplayName("Позитивные сценарии авторизации")
+    class PositiveLoginTests {
+        @Test
+        @DisplayName("Успешная авторизация через кнопку 'Войти в Одноклассники'")
+        void successfulLoginWithButtonTest() {
+            FeedPage feedPage = loginPage.typeEmail(VALID_EMAIL)
+                    .typePassword(VALID_PASSWORD)
+                    .clickLoginSuccess();
+
+            assertTrue(feedPage.isSidebarAvatarVisible(),
+                    "Аватарка на боковой панели не отображается"
+            );
         }
     }
 

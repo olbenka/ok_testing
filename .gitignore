@@ -1,23 +1,19 @@
-/target/
-/out/
-!.mvn/wrapper/maven-wrapper.jar
-
-.idea/
+# Java & IntelliJ
+*.class
+*.log
 *.iml
-*.iws
-*.ipr
 
+# build folders
+/build/
+/out/
+/target/
+
+# test & reports
+/reports/
+/build/reports/
+*.html
+*.png
+
+# OS
 .DS_Store
 Thumbs.db
-
-*.log
-*.tmp
-
-/allure-results/
-/allure-report/
-/build/
-
-*.env
-*.local
-*.swp
-
